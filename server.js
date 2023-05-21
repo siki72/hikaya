@@ -1,0 +1,35 @@
+import express from "express";
+import cors from "cors";
+import mongoose from "mongoose";
+import dotenv from "dotenv";
+import userRoutes from "./routes/userRoutes.js";
+dotenv.config();
+const app = express();
+
+app.use(express.json());
+app.use(cors());
+
+// routes :
+
+app.use("/users", userRoutes);
+
+// midlleware error
+app.use(function (err, req, res, next) {
+  console.log("this err", err);
+  console.error(err.stack);
+  res.status(500).json({ error: "internal server error" });
+});
+const port = process.env.PORT;
+const uri = process.env.ATLAS_URL;
+
+app.listen(port, () => {
+  console.log(`Server running on port: ${port}`);
+});
+
+mongoose
+  .connect(uri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => console.log("connected to MongoDB"))
+  .catch((error) => console.log("MongoDB connection failed:", error.message));
