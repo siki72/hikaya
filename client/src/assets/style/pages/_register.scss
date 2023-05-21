@@ -1,0 +1,64 @@
+.register_container {
+  background-color: rgb(45, 43, 43);
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  .welcom {
+    h1 {
+      font-size: 2rem;
+      font-family: fantasy;
+      line-height: 2rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: rgb(146, 146, 163);
+    }
+    p {
+      font-size: 1.5rem;
+      font-family: "Times New Roman", Times, serif;
+      line-height: 2rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: aliceblue;
+    }
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 50%;
+    width: 20%;
+    gap: 1rem;
+    h2 {
+      font-size: 1.7rem;
+      font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+        "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+      line-height: 2rem;
+      letter-spacing: 1px;
+      color: aliceblue;
+      text-align: center;
+    }
+    input {
+      background-color: rgb(168, 168, 160);
+      padding: 0.5rem 0.8rem;
+      border-radius: 1rem;
+      width: 100%;
+      &::placeholder {
+        color: rgb(99, 99, 97);
+      }
+    }
+    input[type="submit"] {
+      background-color: rgb(120, 117, 117);
+      width: 30%;
+      margin: 0 auto;
+      transition: 0.4s;
+      cursor: pointer;
+      &:hover {
+        transform: scale(1.2);
+        color: white;
+        background-color: rgb(92, 88, 88);
+      }
+    }
+  }
+}
