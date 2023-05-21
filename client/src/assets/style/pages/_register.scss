@@ -60,5 +60,11 @@
         background-color: rgb(92, 88, 88);
       }
     }
+    .hiddenErroMessage {
+      font-size: 0.8rem;
+      text-align: center;
+      color: red;
+      text-transform: uppercase;
+    }
   }
 }

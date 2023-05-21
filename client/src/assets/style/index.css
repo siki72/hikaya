@@ -78,4 +78,10 @@
   transform: scale(1.2);
   color: white;
   background-color: rgb(92, 88, 88);
+}
+.register_container form .hiddenErroMessage {
+  font-size: 0.8rem;
+  text-align: center;
+  color: red;
+  text-transform: uppercase;
 }/*# sourceMappingURL=index.css.map */
