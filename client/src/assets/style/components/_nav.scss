@@ -19,6 +19,25 @@
         transform: scale(1.1);
       }
     }
+    .logout_btn {
+      position: relative;
+      &:hover span {
+        display: inline;
+        transition-delay: 4s;
+      }
+      span {
+        padding: 0.5rem;
+        background-color: dimgray;
+        color: rgb(239, 234, 234);
+        font-size: 1rem;
+        position: absolute;
+        bottom: -2.4rem;
+        left: 50%;
+        transform: translate(-50%);
+        border-radius: 0.4rem;
+        display: none;
+      }
+    }
     .user {
       border-radius: 50%;
       background-color: aliceblue;

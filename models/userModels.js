@@ -25,4 +25,4 @@ const userSchema = new mongoose.Schema(
 // create aour MODEL first param name of collection, second param our schema to creat document collectioin.
 const userModel = mongoose.model("User", userSchema);
 
-export default userModel;
+export default userModel; //Table or collection of users

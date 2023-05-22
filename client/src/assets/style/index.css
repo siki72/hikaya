@@ -233,6 +233,25 @@
   color: white;
   transform: scale(1.1);
 }
+.navgation_bar ul .logout_btn {
+  position: relative;
+}
+.navgation_bar ul .logout_btn:hover span {
+  display: inline;
+  transition-delay: 4s;
+}
+.navgation_bar ul .logout_btn span {
+  padding: 0.5rem;
+  background-color: dimgray;
+  color: rgb(239, 234, 234);
+  font-size: 1rem;
+  position: absolute;
+  bottom: -2.4rem;
+  left: 50%;
+  transform: translate(-50%);
+  border-radius: 0.4rem;
+  display: none;
+}
 .navgation_bar ul .user {
   border-radius: 50%;
   background-color: aliceblue;
