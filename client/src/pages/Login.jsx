@@ -1,7 +1,9 @@
-import { useRef } from "react";
+import { useContext, useRef } from "react";
+import { AuthContext } from "../context/userContext.jsx";
 const Login = () => {
   const formRef = useRef(null);
   const spanRef = useRef(null);
+  const { setUser } = useContext(AuthContext);
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
@@ -22,6 +24,7 @@ const Login = () => {
           body: JSON.stringify(newUser),
         });
         const response = await sendData.json();
+        setUser(response);
         if (spanRef.current && typeof response === "string") {
           console.log(typeof response);
           spanRef.current.innerText = response;
