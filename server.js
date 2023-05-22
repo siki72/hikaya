@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import userRoutes from "./routes/userRoutes.js";
 import chatRoutes from "./routes/chatRoutes.js";
+import messageRoutes from "./routes/messagesRoutes.js";
 import cookieParser from "cookie-parser";
 dotenv.config();
 const app = express();
@@ -20,6 +21,7 @@ app.use(
 // routes :
 app.use("/users", userRoutes);
 app.use("/api/chats", chatRoutes);
+app.use("/api/messages", messageRoutes);
 
 // midlleware error
 app.use(function (err, req, res, next) {

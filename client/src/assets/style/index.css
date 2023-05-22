@@ -15,6 +15,11 @@
   resize: none;
 }
 
+@keyframes show {
+  to {
+    opacity: 1;
+  }
+}
 .register_container {
   background-color: rgb(45, 43, 43);
   height: 100vh;
@@ -238,9 +243,9 @@
 }
 .navgation_bar ul .logout_btn:hover span {
   display: inline;
-  transition-delay: 4s;
 }
 .navgation_bar ul .logout_btn span {
+  opacity: 0;
   padding: 0.5rem;
   background-color: dimgray;
   color: rgb(239, 234, 234);
@@ -251,6 +256,7 @@
   transform: translate(-50%);
   border-radius: 0.4rem;
   display: none;
+  animation: show 1s forwards;
 }
 .navgation_bar ul .user {
   border-radius: 50%;

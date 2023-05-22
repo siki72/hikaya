@@ -7,10 +7,6 @@ import {
 
 const router = express.Router();
 
-// ------------------------------------------
-//       Authentification
-// ------------------------------------------
-
 router.post("/", createChat);
 router.get("/:userId", findUserChats);
 router.get("/find/:firstId/:secondId", findChat);

@@ -14,3 +14,8 @@
     resize: none;
   }
 }
+@keyframes show {
+  to {
+    opacity: 1;
+  }
+}

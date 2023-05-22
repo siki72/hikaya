@@ -3,8 +3,12 @@ import { AuthContext } from "../context/userContext.jsx";
 import Nav from "../components/Nav.jsx";
 import { CiSearch } from "react-icons/ci";
 import { RiUserFill } from "react-icons/ri";
+import { ChatContext } from "../context/chatContext.jsx";
+import SingleChat from "../context/SingleChat.jsx";
 const Chat = () => {
   const { user } = useContext(AuthContext);
+  const { userChats } = useContext(ChatContext);
+
   return (
     <div className="chat_page">
       <div className="navigation">
@@ -17,15 +21,12 @@ const Chat = () => {
             <CiSearch className="serach_icon" />
           </div>
           <div className="chats_elements">
-            <div className="contact">
-              <div className="contact_logo">
-                <RiUserFill className="user_icon" />
-              </div>
-              <div className="contact_infos">
-                <h3>ali</h3>
-                <p>un aperçu du message</p>
-              </div>
-            </div>
+            {userChats &&
+              userChats.map((singleCHat) => (
+                <div className="contact" key={singleCHat._id}>
+                  <SingleChat singleCHat={singleCHat} user={user} />
+                </div>
+              ))}
           </div>
         </div>
         <div className="chats_container">

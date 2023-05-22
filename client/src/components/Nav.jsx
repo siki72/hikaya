@@ -5,7 +5,7 @@ import { RiUserFill, RiLogoutBoxRLine } from "react-icons/ri";
 import { AuthContext } from "../context/userContext.jsx";
 const Nav = () => {
   const { user, setUser } = useContext(AuthContext);
-  const firstLetter = user.name[0].toUpperCase();
+  const firstLetter = user?.name[0].toUpperCase();
   const handleLogOut = async () => {
     try {
       const response = await fetch(import.meta.env.VITE_URL_LOGOUT, {
@@ -18,7 +18,6 @@ const Nav = () => {
       console.log(error);
     }
   };
-  console.log(user.name);
   return (
     <div className="navgation_bar">
       <ul className="items">
@@ -43,7 +42,7 @@ const Nav = () => {
             <RiUserFill />
             <span>
               {firstLetter}
-              {user.name.slice(1)}
+              {user?.name.slice(1)}
             </span>
           </li>
         </ul>
