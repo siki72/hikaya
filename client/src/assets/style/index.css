@@ -84,4 +84,37 @@
   text-align: center;
   color: red;
   text-transform: uppercase;
+}
+
+.chat_page {
+  padding: 1rem;
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  grid-template-columns: 7% 83%;
+}
+
+.navgation_bar {
+  background-color: #081d33;
+  height: 100%;
+  border-radius: 2rem;
+  text-align: center;
+}
+.navgation_bar ul {
+  color: #636467;
+  font-size: 1.5rem;
+  display: flex;
+  min-height: 100%;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.navgation_bar ul .user {
+  border-radius: 50%;
+  background-color: aliceblue;
+  width: 3rem;
+  height: 3rem;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }/*# sourceMappingURL=index.css.map */

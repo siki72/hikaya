@@ -1,0 +1,25 @@
+.navgation_bar {
+  background-color: #081d33;
+  height: 100%;
+  border-radius: 2rem;
+  text-align: center;
+
+  ul {
+    color: #636467;
+    font-size: 1.5rem;
+    display: flex;
+    min-height: 100%;
+    flex-direction: column;
+    justify-content: space-around;
+    .user {
+      border-radius: 50%;
+      background-color: aliceblue;
+      width: 3rem;
+      height: 3rem;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}
