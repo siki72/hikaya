@@ -3,10 +3,12 @@ import cors from "cors";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import userRoutes from "./routes/userRoutes.js";
+import cookieParser from "cookie-parser";
 dotenv.config();
 const app = express();
 
 app.use(express.json());
+app.use(cookieParser());
 app.use(
   cors({
     origin: "http://localhost:5173",
@@ -15,7 +17,6 @@ app.use(
 );
 
 // routes :
-
 app.use("/users", userRoutes);
 
 // midlleware error

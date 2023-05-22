@@ -103,6 +103,32 @@ export const loginUser = async (req, res, next) => {
 };
 
 // ------------------------------------------
+//       Get profile
+// ------------------------------------------
+
+export const getProfile = async (req, res, next) => {
+  const { karibu } = req.cookies;
+  try {
+    if (karibu) {
+      jwt.verify(
+        karibu,
+        process.env.SECRET_KEY,
+        {},
+        async (err, karibuData) => {
+          if (err) throw err;
+          const { id, name, email } = karibuData;
+          res.status(200).json({ id, name, email });
+        }
+      );
+    } else {
+      res.status(204).json("no cookie");
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
+// ------------------------------------------
 //       logout
 // ------------------------------------------
 
