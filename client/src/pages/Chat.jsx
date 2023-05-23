@@ -17,7 +17,6 @@ const Chat = () => {
     console.log(isReady);
     setIsReady(true);
   }, [userChats]);
-  console.log(userChats);
 
   return (
     <>
@@ -36,7 +35,11 @@ const Chat = () => {
               {isReady
                 ? userChats?.map((singleCHat) => (
                     <div className="contact" key={singleCHat._id}>
-                      <SingleChat singleCHat={singleCHat} user={user} />
+                      <SingleChat
+                        singleCHat={singleCHat}
+                        user={user}
+                        chatId={singleCHat._id}
+                      />
                     </div>
                   ))
                 : "loading"}

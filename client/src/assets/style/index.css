@@ -277,7 +277,7 @@
   color: white;
   visibility: visible;
 }
-.contact:hover span {
+.contact:hover #trash {
   color: white;
   visibility: visible;
   display: block;
@@ -321,6 +321,7 @@
   color: rgb(129, 131, 139);
 }
 .contact .datas {
+  padding: 0.5rem 0;
   display: flex;
   flex-direction: column;
   align-items: end;
@@ -344,6 +345,9 @@
 }
 .contact .datas span {
   opacity: 0;
+}
+.contact .datas span:hover {
+  color: red;
 }
 
 .potential_chats {
