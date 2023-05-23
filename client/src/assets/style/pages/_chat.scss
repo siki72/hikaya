@@ -87,6 +87,17 @@
           }
         }
       }
+      .welcom {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .welcom_message {
+          text-align: center;
+          h1 {
+            font-family: $nanum;
+          }
+        }
+      }
     }
   }
 }

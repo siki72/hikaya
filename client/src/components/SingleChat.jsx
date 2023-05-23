@@ -6,7 +6,7 @@ const SingleChat = ({ singleCHat, user, chatId }) => {
   const [recepient, setRecepient] = useState(null);
   const recepiedId = singleCHat?.members.find((id) => id !== user?.id);
   const chatDate = singleCHat?.createdAt.split("T", 1);
-  const { userChats, setUserChats } = useContext(ChatContext);
+  const { userChats, setUserChats, updateRecepient } = useContext(ChatContext);
 
   useEffect(() => {
     const fetchRecepientUser = async () => {
@@ -18,6 +18,7 @@ const SingleChat = ({ singleCHat, user, chatId }) => {
           if (response.status === 200) {
             const data = await response.json();
             setRecepient(data);
+            updateRecepient(data);
           }
         }
       } catch (error) {

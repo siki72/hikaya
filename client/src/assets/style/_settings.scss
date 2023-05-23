@@ -1,3 +1,12 @@
+@font-face {
+  font-family: "Nanum Myeongjo", serif;
+  src: url("https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap");
+}
+@font-face {
+  font-family: "Athiti", serif;
+  src: url("https://fonts.googleapis.com/css2?family=Athiti&display=swap");
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -19,3 +28,6 @@
     opacity: 1;
   }
 }
+
+$nanum: "Nanum Myeongjo", sans-serif;
+$Athiti: "Athiti", sans-serif;

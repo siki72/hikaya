@@ -7,16 +7,18 @@ import { ChatContext } from "../context/chatContext.jsx";
 import SingleChat from "../components/SingleChat.jsx";
 import { useState } from "react";
 import PotentialChat from "../components/PotentialChat";
+import ChatBox from "../components/ChatBox.jsx";
 const Chat = () => {
   const { user } = useContext(AuthContext);
-  const { userChats } = useContext(ChatContext);
+  const { userChats, updateCurrentChat, currentChat, recepient } =
+    useContext(ChatContext);
   const [activeTab, setActiveTab] = useState("home");
   const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
-    console.log(isReady);
     setIsReady(true);
   }, [userChats]);
+  console.log("current chat", currentChat);
 
   return (
     <>
@@ -34,7 +36,11 @@ const Chat = () => {
             <div className="chats_elements">
               {isReady
                 ? userChats?.map((singleCHat) => (
-                    <div className="contact" key={singleCHat._id}>
+                    <div
+                      className="contact"
+                      key={singleCHat._id}
+                      onClick={() => updateCurrentChat(singleCHat)}
+                    >
                       <SingleChat
                         singleCHat={singleCHat}
                         user={user}
@@ -47,17 +53,28 @@ const Chat = () => {
           </div>
           <div className="chats_container">
             <div className="header">
-              <div className="contact_logo">
-                <RiUserFill className="user_icon" />
+              {currentChat && (
+                <>
+                  <div className="contact_logo">
+                    <RiUserFill className="user_icon" />
+                  </div>
+                  <span>{recepient?.name}</span>
+                </>
+              )}
+            </div>
+            {currentChat ? (
+              <ChatBox user={user} />
+            ) : (
+              <div className="container_chats welcom">
+                <div className="welcom_message ">
+                  <h1 className="title">Welcome back {user.name} 😄</h1>
+                  <p>
+                    Select a conversation from your contacts list and start
+                    chatting in <span className="text-primary">private</span>.
+                  </p>
+                </div>
               </div>
-              <span>{user.name}</span>
-            </div>
-            <div className="container_chats">
-              <form action="">
-                <input type="text" placeholder="Messages ..." name="messages" />
-                <input type="submit" value="send" />
-              </form>
-            </div>
+            )}
           </div>
         </div>
       </div>

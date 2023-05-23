@@ -1,8 +1,37 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useCallback, useEffect, useState } from "react";
 export const ChatContext = createContext();
 export const ChatContextProvider = ({ children, user }) => {
   const [userChats, setUserChats] = useState([]);
   const [potentialChats, setPotentialChats] = useState([]);
+  const [currentChat, setCurrentChat] = useState(null);
+  const [messages, setMessages] = useState([]);
+  const [messagesLoading, setMessagesLoading] = useState(false);
+  const [messagesError, setMessagesError] = useState(null);
+  const [recepient, setRecepient] = useState(null);
+
+  useEffect(() => {
+    const getMessages = async () => {
+      setMessagesLoading(true);
+      setMessagesError(null);
+      try {
+        if (currentChat) {
+          const response = await fetch(
+            `${import.meta.env.VITE_URL_API_MESSAGES}${currentChat._id}`
+          );
+          if (response.status === 200) {
+            const data = await response.json();
+            setMessages(data);
+          }
+          if (response.error) {
+            return setMessagesError(response);
+          }
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getMessages();
+  }, [currentChat]);
 
   useEffect(() => {
     const getUsers = async () => {
@@ -31,6 +60,14 @@ export const ChatContextProvider = ({ children, user }) => {
     getUsers();
   }, [userChats]);
 
+  const updateCurrentChat = useCallback((chat) => {
+    setCurrentChat(chat);
+  }, []);
+
+  const updateRecepient = useCallback((data) => {
+    setRecepient(data);
+  }, []);
+
   useEffect(() => {
     const getUsersChats = async () => {
       try {
@@ -41,7 +78,6 @@ export const ChatContextProvider = ({ children, user }) => {
           if (response.status === 200) {
             const data = await response.json();
             setUserChats(data);
-            console.log(data);
           }
         }
       } catch (error) {
@@ -50,12 +86,18 @@ export const ChatContextProvider = ({ children, user }) => {
     };
     getUsersChats();
   }, [user]);
+  console.log("r", recepient);
   return (
     <ChatContext.Provider
       value={{
         userChats,
         setUserChats,
         potentialChats,
+        updateCurrentChat,
+        messages,
+        currentChat,
+        updateRecepient,
+        recepient,
       }}
     >
       {children}

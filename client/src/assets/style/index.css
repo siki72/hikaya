@@ -1,3 +1,11 @@
+@font-face {
+  font-family: "Nanum Myeongjo", serif;
+  src: url("https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap");
+}
+@font-face {
+  font-family: "Athiti", serif;
+  src: url("https://fonts.googleapis.com/css2?family=Athiti&display=swap");
+}
 * {
   margin: 0;
   padding: 0;
@@ -180,6 +188,17 @@
   background-color: rgb(55, 67, 89);
   color: white;
 }
+.chat_page .chat .chats_container .welcom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.chat_page .chat .chats_container .welcom .welcom_message {
+  text-align: center;
+}
+.chat_page .chat .chats_container .welcom .welcom_message h1 {
+  font-family: "Nanum Myeongjo", sans-serif;
+}
 
 .navgation_bar {
   background-color: #081d33;
@@ -312,6 +331,7 @@
   align-self: flex-start;
 }
 .contact .contact_infos h3 {
+  font-family: "Athiti", sans-serif;
   text-transform: uppercase;
   color: rgb(37, 30, 30);
   font-size: 0.9rem;
