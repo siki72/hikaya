@@ -1,7 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 export const ChatContext = createContext();
 export const ChatContextProvider = ({ children, user }) => {
-  const [userChats, setUserChats] = useState(null);
+  const [userChats, setUserChats] = useState([]);
   const [potentialChats, setPotentialChats] = useState([]);
 
   useEffect(() => {
@@ -19,7 +19,6 @@ export const ChatContextProvider = ({ children, user }) => {
                   return chat.members[0] === u._id || chat.members[1] === u._id;
                 });
               }
-              console.log("isChatcreated", ischatCreated);
               return !ischatCreated;
             });
             setPotentialChats(pChats);
@@ -50,11 +49,11 @@ export const ChatContextProvider = ({ children, user }) => {
     };
     getUsersChats();
   }, [user]);
-  console.log(userChats);
   return (
     <ChatContext.Provider
       value={{
         userChats,
+        setUserChats,
         potentialChats,
       }}
     >

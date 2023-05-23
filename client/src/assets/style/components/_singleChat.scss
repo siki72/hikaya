@@ -5,6 +5,16 @@
   gap: 1rem;
   border-radius: 1rem;
   height: 4rem;
+  margin: 1rem 0;
+  transition: 0.3s;
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.1);
+    background-color: rgb(33, 36, 39);
+  }
+  &:hover .contact_infos h3 {
+    color: white;
+  }
   .contact_logo {
     background-color: rgb(217, 219, 237);
     border-radius: 50%;

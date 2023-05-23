@@ -265,6 +265,16 @@
   gap: 1rem;
   border-radius: 1rem;
   height: 4rem;
+  margin: 1rem 0;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.contact:hover {
+  transform: scale(1.1);
+  background-color: rgb(33, 36, 39);
+}
+.contact:hover .contact_infos h3 {
+  color: white;
 }
 .contact .contact_logo {
   background-color: rgb(217, 219, 237);
@@ -320,4 +330,71 @@
 .contact .datas .date {
   font-size: 0.9rem;
   color: rgb(80, 86, 86);
+}
+
+.potential_chats {
+  background-color: rgba(0, 0, 0, 0.485);
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  z-index: 1;
+  -webkit-backdrop-filter: blur(2px);
+          backdrop-filter: blur(2px);
+}
+.potential_chats .new_chats_container {
+  position: relative;
+  padding: 3rem;
+  border-radius: 1rem;
+  background-color: rgb(80, 88, 86);
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.potential_chats .new_chats_container .close {
+  position: absolute;
+  top: 0.2rem;
+  right: 0.4rem;
+  font-size: 1.5rem;
+  transition: 0.2s;
+  cursor: pointer;
+}
+.potential_chats .new_chats_container .close:hover {
+  transform: scale(1.1);
+}
+.potential_chats .new_chats_container .chats_box {
+  margin: 1rem;
+  border-radius: 1rem;
+  text-align: center;
+  height: 4rem;
+  width: 10rem;
+  gap: 1rem;
+  background-color: rgb(238, 239, 249);
+  cursor: pointer;
+  transition: 0.3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.potential_chats .new_chats_container .chats_box:hover {
+  background-color: aliceblue;
+  box-shadow: 0 0 2px black;
+  transform: scale(1.1);
+}
+.potential_chats .new_chats_container .chats_box .contact_chatslogo {
+  background-color: rgb(217, 219, 237);
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.potential_chats .new_chats_container .chats_box .contact_chats {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  justify-content: center;
 }/*# sourceMappingURL=index.css.map */
