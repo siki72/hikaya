@@ -54,3 +54,36 @@ export const findChat = async (req, res, next) => {
     next(error);
   }
 };
+
+// ------------------------------------------
+//  Remove a chat
+// ------------------------------------------
+
+/* export const removeChat = async (req, res, next) => {
+  const { id, chatId } = req.body;
+  try {
+    const removeChat = await chatModel.findById(chatId);
+    if (!removeChat) return res.status(404).json("chat not foud");
+    let members = removeChat.members;
+    const index = members.findIndex((member) => member === id);
+    members.splice(index, 1);
+    await chatModel.findByIdAndUpdate(chatId, { members });
+    res.status(200);
+  } catch (error) {
+    next(error);
+  }
+}; */
+
+// ------------------------------------------
+//  Remove a chat
+// ------------------------------------------
+export const removeChat = async (req, res, next) => {
+  const { id, chatId } = req.body;
+  try {
+    const removeChat = await chatModel.findByIdAndDelete(chatId);
+    if (!removeChat) return res.status(404).json("chat not foud");
+    res.status(200).json("chat removed");
+  } catch (error) {
+    next(error);
+  }
+};

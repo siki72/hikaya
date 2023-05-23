@@ -275,8 +275,16 @@
 }
 .contact:hover .contact_infos h3 {
   color: white;
+  visibility: visible;
+}
+.contact:hover span {
+  color: white;
+  visibility: visible;
+  display: block;
+  opacity: 1;
 }
 .contact .contact_logo {
+  position: relative;
   background-color: rgb(217, 219, 237);
   border-radius: 50%;
   width: 2rem;
@@ -285,6 +293,15 @@
   justify-content: center;
   align-items: center;
   margin-left: 1.5rem;
+}
+.contact .contact_logo .online_user {
+  width: 0.7rem;
+  height: 0.7rem;
+  background-color: rgb(13, 221, 15);
+  border-radius: 50%;
+  position: absolute;
+  bottom: -0.1rem;
+  left: 1.2rem;
 }
 .contact .contact_logo .user_icon {
   color: white;
@@ -310,12 +327,6 @@
   justify-content: space-around;
   height: 100%;
 }
-.contact .datas .online_user {
-  width: 0.7rem;
-  height: 0.7rem;
-  background-color: rgb(13, 221, 15);
-  border-radius: 50%;
-}
 .contact .datas .notifications {
   background-color: rgb(96, 96, 175);
   width: 1rem;
@@ -330,6 +341,9 @@
 .contact .datas .date {
   font-size: 0.9rem;
   color: rgb(80, 86, 86);
+}
+.contact .datas span {
+  opacity: 0;
 }
 
 .potential_chats {

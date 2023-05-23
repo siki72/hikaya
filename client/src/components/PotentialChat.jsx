@@ -3,10 +3,10 @@ import { ChatContext } from "../context/chatContext.jsx";
 import { RiUserFill } from "react-icons/ri";
 import { AiOutlineClose } from "react-icons/ai";
 import { AuthContext } from "../context/userContext.jsx";
+import { BsFillTrash3Fill } from "react-icons/bs";
 const PotentialChat = ({ setActiveTab }) => {
   const { potentialChats, setUserChats } = useContext(ChatContext);
   const { user } = useContext(AuthContext);
-  console.log(user);
   const createChat = async (id) => {
     console.log(id);
     try {

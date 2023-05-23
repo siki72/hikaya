@@ -41,6 +41,7 @@ export const ChatContextProvider = ({ children, user }) => {
           if (response.status === 200) {
             const data = await response.json();
             setUserChats(data);
+            console.log(data);
           }
         }
       } catch (error) {

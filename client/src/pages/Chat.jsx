@@ -17,6 +17,7 @@ const Chat = () => {
     console.log(isReady);
     setIsReady(true);
   }, [userChats]);
+  console.log(userChats);
 
   return (
     <>
