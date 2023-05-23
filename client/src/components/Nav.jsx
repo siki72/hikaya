@@ -1,11 +1,15 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { AiOutlineHome, AiFillSetting } from "react-icons/ai";
 import { BiMessageDots } from "react-icons/bi";
 import { RiUserFill, RiLogoutBoxRLine } from "react-icons/ri";
 import { AuthContext } from "../context/userContext.jsx";
-const Nav = () => {
+const Nav = ({ setActiveTab, activeTab }) => {
   const { user, setUser } = useContext(AuthContext);
   const firstLetter = user?.name[0].toUpperCase();
+
+  const handleActiveTab = (tabName) => {
+    setActiveTab(tabName);
+  };
   const handleLogOut = async () => {
     try {
       const response = await fetch(import.meta.env.VITE_URL_LOGOUT, {
@@ -21,15 +25,30 @@ const Nav = () => {
   return (
     <div className="navgation_bar">
       <ul className="items">
-        <li className="logout_btn">
+        <li
+          className={
+            activeTab === "home" ? "activeClass logout_btn" : "logout_btn"
+          }
+          onClick={() => handleActiveTab("home")}
+        >
           <AiOutlineHome />
           <span>Home</span>
         </li>
-        <li className="logout_btn">
+        <li
+          className={
+            activeTab === "chats" ? "activeClass logout_btn" : "logout_btn"
+          }
+          onClick={() => handleActiveTab("chats")}
+        >
           <BiMessageDots />
-          <span>Chat</span>
+          <span>Chats</span>
         </li>
-        <li className="logout_btn">
+        <li
+          className={
+            activeTab === "settings" ? "activeClass logout_btn" : "logout_btn"
+          }
+          onClick={() => handleActiveTab("settings")}
+        >
           <AiFillSetting />
           <span>Settings</span>
         </li>

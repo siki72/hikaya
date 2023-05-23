@@ -8,7 +8,6 @@ import { ChatContextProvider } from "./context/chatContext.jsx";
 
 function App() {
   const { user } = useContext(AuthContext);
-  console.log(user);
   return (
     <>
       <ChatContextProvider user={user}>

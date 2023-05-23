@@ -3,6 +3,7 @@ import { RiUserFill } from "react-icons/ri";
 const SingleChat = ({ singleCHat, user }) => {
   const [recepient, setRecepient] = useState(null);
   const recepiedId = singleCHat?.members.find((id) => id !== user?.id);
+  const chatDate = singleCHat?.createdAt.split("T", 1);
   useEffect(() => {
     const fetchRecepientUser = async () => {
       try {
@@ -31,7 +32,8 @@ const SingleChat = ({ singleCHat, user }) => {
         <p>un aperçu du message</p>
       </div>
       <div className="datas">
-        <div className="date">12/12/2022</div>
+        <div className="online_user"></div>
+        <div className="date">{chatDate}</div>
         <div className="notifications">2</div>
       </div>
     </>

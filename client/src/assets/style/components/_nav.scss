@@ -54,5 +54,24 @@
         transform: scale(1.1);
       }
     }
+    .activeClass {
+      background-color: rgb(105, 133, 253);
+      color: white;
+      cursor: inherit;
+      width: 2.4rem;
+      height: 2rem;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 0.4rem;
+      &:hover {
+        transform: scale(1);
+        color: white;
+      }
+      &:hover span {
+        display: none;
+      }
+    }
   }
 }

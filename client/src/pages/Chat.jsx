@@ -4,15 +4,17 @@ import Nav from "../components/Nav.jsx";
 import { CiSearch } from "react-icons/ci";
 import { RiUserFill } from "react-icons/ri";
 import { ChatContext } from "../context/chatContext.jsx";
-import SingleChat from "../context/SingleChat.jsx";
+import SingleChat from "../components/SingleChat.jsx";
+import { useState } from "react";
 const Chat = () => {
   const { user } = useContext(AuthContext);
   const { userChats } = useContext(ChatContext);
+  const [activeTab, setActiveTab] = useState("home");
 
   return (
     <div className="chat_page">
       <div className="navigation">
-        <Nav />
+        <Nav setActiveTab={setActiveTab} activeTab={activeTab} />
       </div>
       <div className="chat">
         <div className="chats">
