@@ -86,7 +86,9 @@ export const ChatContextProvider = ({ children, user }) => {
     };
     getUsersChats();
   }, [user]);
-  console.log("r", recepient);
+
+  console.log(currentChat);
+
   return (
     <ChatContext.Provider
       value={{

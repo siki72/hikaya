@@ -2,11 +2,12 @@ import React, { useContext, useEffect, useState } from "react";
 import { RiUserFill } from "react-icons/ri";
 import { BsFillTrash3Fill } from "react-icons/bs";
 import { ChatContext } from "../context/chatContext.jsx";
-const SingleChat = ({ singleCHat, user, chatId }) => {
+const SingleChat = ({ singleCHat, user, chatId, setName }) => {
   const [recepient, setRecepient] = useState(null);
   const recepiedId = singleCHat?.members.find((id) => id !== user?.id);
   const chatDate = singleCHat?.createdAt.split("T", 1);
-  const { userChats, setUserChats, updateRecepient } = useContext(ChatContext);
+  const { userChats, setUserChats, updateRecepient, updateCurrentChat } =
+    useContext(ChatContext);
 
   useEffect(() => {
     const fetchRecepientUser = async () => {
@@ -26,7 +27,7 @@ const SingleChat = ({ singleCHat, user, chatId }) => {
       }
     };
     fetchRecepientUser();
-  }, [user]);
+  }, [singleCHat]);
 
   const handleRemoveChat = async () => {
     const response = await fetch(import.meta.env.VITE_URL_REMOVE_CHAT, {
@@ -42,10 +43,22 @@ const SingleChat = ({ singleCHat, user, chatId }) => {
       setUserChats(newChats);
     }
   };
+  useEffect(() => {
+    console.log(name);
+  }, [name]);
+
+  const handleUpdate = (param) => {
+    updateCurrentChat(param);
+    setName(recepient.name);
+  };
 
   return (
-    <>
-      <div className="contact_logo">
+    <div
+      className="contact"
+      key={singleCHat._id}
+      onClick={() => handleUpdate(singleCHat)}
+    >
+      <div className="contact_logo" onClick={() => setName(recepient?.name)}>
         <RiUserFill className="user_icon" />
         <div className="online_user"></div>
       </div>
@@ -60,7 +73,7 @@ const SingleChat = ({ singleCHat, user, chatId }) => {
         <div className="date">{chatDate}</div>
         <div className="notifications">2</div>
       </div>
-    </>
+    </div>
   );
 };
 

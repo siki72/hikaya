@@ -10,15 +10,14 @@ import PotentialChat from "../components/PotentialChat";
 import ChatBox from "../components/ChatBox.jsx";
 const Chat = () => {
   const { user } = useContext(AuthContext);
-  const { userChats, updateCurrentChat, currentChat, recepient } =
-    useContext(ChatContext);
+  const { userChats, currentChat, recepient } = useContext(ChatContext);
   const [activeTab, setActiveTab] = useState("home");
+  const [name, setName] = useState(null);
   const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
     setIsReady(true);
-  }, [userChats]);
-  console.log("current chat", currentChat);
+  }, [recepient]);
 
   return (
     <>
@@ -36,17 +35,13 @@ const Chat = () => {
             <div className="chats_elements">
               {isReady
                 ? userChats?.map((singleCHat) => (
-                    <div
-                      className="contact"
+                    <SingleChat
+                      singleCHat={singleCHat}
+                      user={user}
+                      chatId={singleCHat._id}
                       key={singleCHat._id}
-                      onClick={() => updateCurrentChat(singleCHat)}
-                    >
-                      <SingleChat
-                        singleCHat={singleCHat}
-                        user={user}
-                        chatId={singleCHat._id}
-                      />
-                    </div>
+                      setName={setName}
+                    />
                   ))
                 : "loading"}
             </div>
@@ -58,7 +53,7 @@ const Chat = () => {
                   <div className="contact_logo">
                     <RiUserFill className="user_icon" />
                   </div>
-                  <span>{recepient?.name}</span>
+                  <span>{name}</span>
                 </>
               )}
             </div>
