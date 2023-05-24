@@ -1,14 +1,30 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { RiUserFill } from "react-icons/ri";
 import { BsFillTrash3Fill } from "react-icons/bs";
 import { ChatContext } from "../context/chatContext.jsx";
+import moment from "moment";
 const SingleChat = ({ singleCHat, user, chatId, setName }) => {
+  const divRef = useRef(null);
   const [recepient, setRecepient] = useState(null);
   const recepiedId = singleCHat?.members.find((id) => id !== user?.id);
   const chatDate = singleCHat?.createdAt.split("T", 1);
-  const { userChats, setUserChats, updateRecepient, updateCurrentChat } =
-    useContext(ChatContext);
-
+  const {
+    userChats,
+    setUserChats,
+    updateRecepient,
+    updateCurrentChat,
+    currentChat,
+  } = useContext(ChatContext);
+  useEffect(() => {
+    if (currentChat && singleCHat) {
+      if (currentChat._id === singleCHat._id) {
+        divRef.current.className = "contact blue_backGround";
+      }
+    }
+    return () => {
+      divRef.current.className = "contact";
+    };
+  }, [currentChat, singleCHat, divRef]);
   useEffect(() => {
     const fetchRecepientUser = async () => {
       try {
@@ -54,6 +70,7 @@ const SingleChat = ({ singleCHat, user, chatId, setName }) => {
 
   return (
     <div
+      ref={divRef}
       className="contact"
       key={singleCHat._id}
       onClick={() => handleUpdate(singleCHat)}

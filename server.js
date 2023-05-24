@@ -6,10 +6,12 @@ import userRoutes from "./routes/userRoutes.js";
 import chatRoutes from "./routes/chatRoutes.js";
 import messageRoutes from "./routes/messagesRoutes.js";
 import cookieParser from "cookie-parser";
+import bodyParser from "body-parser";
 dotenv.config();
 const app = express();
 
 app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(
   cors({

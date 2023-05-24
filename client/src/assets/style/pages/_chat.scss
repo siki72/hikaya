@@ -52,7 +52,7 @@
       }
       .container_chats {
         position: relative;
-        background-color: rgb(238, 239, 249);
+        background-color: white;
         height: 90%;
         border-radius: 2rem;
         form {
@@ -63,11 +63,12 @@
           display: flex;
           width: 80%;
           input[type="text"] {
-            border: 1px solid transparent;
+            border: 1px solid black;
             padding: 1rem;
             width: 80%;
             margin: 0 auto;
             border-radius: 2rem;
+            font-size: 0.9rem;
             &:focus {
               border: 1px solid rgb(54, 88, 104);
             }

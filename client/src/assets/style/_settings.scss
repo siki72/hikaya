@@ -7,6 +7,11 @@
   src: url("https://fonts.googleapis.com/css2?family=Athiti&display=swap");
 }
 
+@font-face {
+  font-family: "Open", sans-serif;
+  src: url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -23,6 +28,9 @@
     resize: none;
   }
 }
+body {
+  background-color: rgb(233, 228, 224);
+}
 @keyframes show {
   to {
     opacity: 1;
@@ -31,3 +39,4 @@
 
 $nanum: "Nanum Myeongjo", sans-serif;
 $Athiti: "Athiti", sans-serif;
+$Open: "Open", sans-serif;

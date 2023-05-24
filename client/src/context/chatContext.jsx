@@ -67,6 +67,9 @@ export const ChatContextProvider = ({ children, user }) => {
   const updateRecepient = useCallback((data) => {
     setRecepient(data);
   }, []);
+  const updateMessages = useCallback((data) => {
+    setMessages((prev) => [...prev, data]);
+  }, []);
 
   useEffect(() => {
     const getUsersChats = async () => {
@@ -87,8 +90,6 @@ export const ChatContextProvider = ({ children, user }) => {
     getUsersChats();
   }, [user]);
 
-  console.log(currentChat);
-
   return (
     <ChatContext.Provider
       value={{
@@ -100,6 +101,7 @@ export const ChatContextProvider = ({ children, user }) => {
         currentChat,
         updateRecepient,
         recepient,
+        updateMessages,
       }}
     >
       {children}

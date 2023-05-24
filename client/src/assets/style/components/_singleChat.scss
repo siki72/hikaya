@@ -10,11 +10,6 @@
   cursor: pointer;
   &:hover {
     transform: scale(1.1);
-    background-color: rgb(33, 36, 39);
-  }
-  &:hover .contact_infos h3 {
-    color: white;
-    visibility: visible;
   }
   &:hover #trash {
     color: white;
@@ -87,6 +82,20 @@
       &:hover {
         color: red;
       }
+    }
+  }
+}
+.blue_backGround {
+  background-color: rgb(0, 122, 255);
+  .contact_infos {
+    h3,
+    p {
+      color: white;
+    }
+  }
+  .datas {
+    .date {
+      color: whitesmoke;
     }
   }
 }

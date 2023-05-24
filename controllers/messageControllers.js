@@ -5,14 +5,20 @@ import messageModel from "../models/messageModels.js";
 
 export const createMessage = async (req, res, next) => {
   const { chatId, senderId, text } = req.body;
+
   try {
-    const message = new messageModel({
-      chatId,
-      senderId,
-      text,
-    });
-    const response = await message.save();
-    res.status(201).json(response);
+    if (text !== "") {
+      const message = new messageModel({
+        chatId,
+        senderId,
+        text,
+      });
+      const response = await message.save();
+      console.log(response);
+      res.status(201).json(response);
+    } else {
+      return res.status(203).json("no text");
+    }
   } catch (error) {
     next(error);
   }
