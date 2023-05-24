@@ -32,6 +32,7 @@
       }
     }
     .chats_container {
+      height: 80vh;
       .header {
         display: flex;
         align-items: center;
@@ -51,10 +52,11 @@
         }
       }
       .container_chats {
+        overflow: auto;
         position: relative;
         background-color: white;
         height: 90%;
-        border-radius: 2rem;
+        border-radius: 0.5rem;
         form {
           position: absolute;
           bottom: 1rem;
@@ -89,6 +91,7 @@
         }
       }
       .welcom {
+        height: 80vh;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -98,6 +101,18 @@
             font-family: $nanum;
           }
         }
+      }
+    }
+    .send_message {
+      margin: 1rem 0;
+      display: flex;
+      width: 100%;
+
+      input {
+        background-color: rgb(25, 135, 255);
+        color: white;
+        padding: 0.1rem 1rem;
+        border-radius: 0.5rem;
       }
     }
   }

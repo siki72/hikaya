@@ -1,13 +1,21 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { ChatContext } from "../context/chatContext.jsx";
 import { RiUserFill } from "react-icons/ri";
 import moment from "moment";
 import InputEmoji from "react-input-emoji";
 const ChatBox = ({ user, name }) => {
-  const formRef = useRef(null);
+  const chatContainerRef = useRef(null);
   const { currentChat, messages, updateMessages } = useContext(ChatContext);
   const [textMessage, setTextMessage] = useState("");
   const myId = user.id;
+
+  useEffect(() => {
+    if (chatContainerRef.current) {
+      console.log("called lilas");
+      scrollToBottom();
+    }
+  }, [messages]);
+
   const handleSendMessage = async (e) => {
     e.preventDefault();
     try {
@@ -36,7 +44,13 @@ const ChatBox = ({ user, name }) => {
       console.log(error);
     }
   };
-  console.log(textMessage);
+  function scrollToBottom() {
+    const chatContainer = chatContainerRef.current;
+    // scroltop donne la position du difilement ( son emplacement) la ref
+
+    chatContainer.scrollTop = chatContainer.scrollHeight;
+    //scrollHeight est la valeur total du contenu deroulable de la ref
+  }
   return (
     <div className="chats_container">
       {currentChat ? (
@@ -47,7 +61,7 @@ const ChatBox = ({ user, name }) => {
             </div>
             <span>{name}</span>
           </div>
-          <div className="container_chats">
+          <div className="container_chats" ref={chatContainerRef}>
             {messages &&
               messages.map((message, index) => (
                 <div
@@ -64,15 +78,16 @@ const ChatBox = ({ user, name }) => {
                   </div>
                 </div>
               ))}
-            <form action="" ref={formRef}>
-              <InputEmoji
-                placeholder="Type a message"
-                value={textMessage}
-                onChange={setTextMessage}
-              />
-              <input type="submit" value="send" onClick={handleSendMessage} />
-            </form>
+
             <div className="emoji"></div>
+          </div>
+          <div className="send_message">
+            <InputEmoji
+              placeholder="Type a message"
+              value={textMessage}
+              onChange={setTextMessage}
+            />
+            <input type="submit" value="send" onClick={handleSendMessage} />
           </div>
         </>
       ) : (

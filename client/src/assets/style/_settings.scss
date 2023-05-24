@@ -20,7 +20,6 @@
   outline: none;
   border: none;
   text-decoration: none;
-  scroll-behavior: smooth;
   input:focus {
     outline: none;
   }
@@ -40,3 +39,35 @@ body {
 $nanum: "Nanum Myeongjo", sans-serif;
 $Athiti: "Athiti", sans-serif;
 $Open: "Open", sans-serif;
+::-webkit-scrollbar {
+  background-color: transparent;
+  border-radius: 2rem;
+  width: 5px;
+}
+
+/* Pour les navigateurs basés sur WebKit (Google Chrome, Safari, etc.) */
+::-webkit-scrollbar-thumb {
+  background-color: #839fe2;
+  border-radius: 2rem;
+  width: 5px;
+}
+
+/* Pour les navigateurs basés sur Mozilla (Firefox) */
+::-moz-scrollbar {
+  background-color: transparent;
+}
+
+/* Pour les navigateurs basés sur Mozilla (Firefox) */
+::-moz-scrollbar-thumb {
+  background-color: #888;
+}
+
+/* Pour les navigateurs basés sur Internet Explorer et Edge */
+::-ms-scrollbar {
+  background-color: transparent;
+}
+
+/* Pour les navigateurs basés sur Internet Explorer et Edge */
+::-ms-scrollbar-thumb {
+  background-color: #888;
+}

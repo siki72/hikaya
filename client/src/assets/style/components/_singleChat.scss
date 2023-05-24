@@ -6,13 +6,15 @@
   border-radius: 1rem;
   height: 4rem;
   margin: 1rem 0;
+  width: max-content;
   transition: 0.3s;
+  z-index: 1;
   cursor: pointer;
   &:hover {
     transform: scale(1.1);
   }
   &:hover #trash {
-    color: white;
+    color: rgb(0, 0, 0);
     visibility: visible;
     display: block;
     opacity: 1;
@@ -56,7 +58,7 @@
     }
   }
   .datas {
-    padding: 0.5rem 0;
+    padding: 0.5rem;
     display: flex;
     flex-direction: column;
     align-items: end;

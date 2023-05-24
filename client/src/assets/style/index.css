@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @font-face {
   font-family: "Nanum Myeongjo", serif;
   src: url("https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap");
@@ -18,7 +19,6 @@
   outline: none;
   border: none;
   text-decoration: none;
-  scroll-behavior: smooth;
 }
 * input:focus {
   outline: none;
@@ -36,6 +36,39 @@ body {
     opacity: 1;
   }
 }
+::-webkit-scrollbar {
+  background-color: transparent;
+  border-radius: 2rem;
+  width: 5px;
+}
+
+/* Pour les navigateurs basés sur WebKit (Google Chrome, Safari, etc.) */
+::-webkit-scrollbar-thumb {
+  background-color: #839fe2;
+  border-radius: 2rem;
+  width: 5px;
+}
+
+/* Pour les navigateurs basés sur Mozilla (Firefox) */
+::-moz-scrollbar {
+  background-color: transparent;
+}
+
+/* Pour les navigateurs basés sur Mozilla (Firefox) */
+::-moz-scrollbar-thumb {
+  background-color: #888;
+}
+
+/* Pour les navigateurs basés sur Internet Explorer et Edge */
+::-ms-scrollbar {
+  background-color: transparent;
+}
+
+/* Pour les navigateurs basés sur Internet Explorer et Edge */
+::-ms-scrollbar-thumb {
+  background-color: #888;
+}
+
 .register_container {
   background-color: rgb(45, 43, 43);
   height: 100vh;
@@ -141,6 +174,9 @@ body {
 .chat_page .chat .chats .chats_elements {
   padding: 1rem 0;
 }
+.chat_page .chat .chats_container {
+  height: 80vh;
+}
 .chat_page .chat .chats_container .header {
   display: flex;
   align-items: center;
@@ -160,10 +196,11 @@ body {
   text-transform: uppercase;
 }
 .chat_page .chat .chats_container .container_chats {
+  overflow: auto;
   position: relative;
   background-color: white;
   height: 90%;
-  border-radius: 2rem;
+  border-radius: 0.5rem;
 }
 .chat_page .chat .chats_container .container_chats form {
   position: absolute;
@@ -198,6 +235,7 @@ body {
   color: white;
 }
 .chat_page .chat .chats_container .welcom {
+  height: 80vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -207,6 +245,17 @@ body {
 }
 .chat_page .chat .chats_container .welcom .welcom_message h1 {
   font-family: "Nanum Myeongjo", sans-serif;
+}
+.chat_page .chat .send_message {
+  margin: 1rem 0;
+  display: flex;
+  width: 100%;
+}
+.chat_page .chat .send_message input {
+  background-color: rgb(25, 135, 255);
+  color: white;
+  padding: 0.1rem 1rem;
+  border-radius: 0.5rem;
 }
 
 .navgation_bar {
@@ -294,14 +343,17 @@ body {
   border-radius: 1rem;
   height: 4rem;
   margin: 1rem 0;
+  width: -moz-max-content;
+  width: max-content;
   transition: 0.3s;
+  z-index: 1;
   cursor: pointer;
 }
 .contact:hover {
   transform: scale(1.1);
 }
 .contact:hover #trash {
-  color: white;
+  color: rgb(0, 0, 0);
   visibility: visible;
   display: block;
   opacity: 1;
@@ -345,7 +397,7 @@ body {
   color: rgb(129, 131, 139);
 }
 .contact .datas {
-  padding: 0.5rem 0;
+  padding: 0.5rem;
   display: flex;
   flex-direction: column;
   align-items: end;

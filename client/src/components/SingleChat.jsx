@@ -16,13 +16,17 @@ const SingleChat = ({ singleCHat, user, chatId, setName }) => {
     currentChat,
   } = useContext(ChatContext);
   useEffect(() => {
+    /*     divRef.current.className = "contact "; */
     if (currentChat && singleCHat) {
       if (currentChat._id === singleCHat._id) {
         divRef.current.className = "contact blue_backGround";
       }
     }
+
     return () => {
-      divRef.current.className = "contact";
+      if (divRef.current) {
+        divRef.current.className = "contact";
+      }
     };
   }, [currentChat, singleCHat, divRef]);
   useEffect(() => {
