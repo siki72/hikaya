@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import { RiUserFill } from "react-icons/ri";
 import { BsFillTrash3Fill } from "react-icons/bs";
 import { ChatContext } from "../context/chatContext.jsx";
-import moment from "moment";
 const SingleChat = ({ singleCHat, user, chatId, setName }) => {
   const divRef = useRef(null);
   const [recepient, setRecepient] = useState(null);
@@ -16,9 +15,8 @@ const SingleChat = ({ singleCHat, user, chatId, setName }) => {
     currentChat,
     onlineUsers,
   } = useContext(ChatContext);
-  const [isOnline, setIsOnline] = useState(null);
+
   useEffect(() => {
-    /*     divRef.current.className = "contact "; */
     if (currentChat && singleCHat) {
       if (currentChat._id === singleCHat._id) {
         divRef.current.className = "contact blue_backGround";
@@ -32,9 +30,6 @@ const SingleChat = ({ singleCHat, user, chatId, setName }) => {
     };
   }, [currentChat, singleCHat, divRef]);
 
-  useEffect(() => {
-    onlineUsers.some((u) => u.userId === recepient?._id) && setIsOnline(true);
-  }, [onlineUsers, recepient]);
   useEffect(() => {
     const fetchRecepientUser = async () => {
       try {
@@ -70,16 +65,11 @@ const SingleChat = ({ singleCHat, user, chatId, setName }) => {
       setUserChats(newChats);
     }
   };
-  useEffect(() => {
-    console.log(name);
-  }, [name]);
 
   const handleUpdate = (param) => {
     updateCurrentChat(param);
     setName(recepient.name);
   };
-
-  console.log(onlineUsers);
   return (
     <div
       ref={divRef}
@@ -89,7 +79,9 @@ const SingleChat = ({ singleCHat, user, chatId, setName }) => {
     >
       <div className="contact_logo" onClick={() => setName(recepient?.name)}>
         <RiUserFill className="user_icon" />
-        {isOnline && <div className="online_user"></div>}
+        {onlineUsers.some((u) => u.userId === recepient?._id) && (
+          <div className="online_user"></div>
+        )}
       </div>
       <div className="contact_infos">
         <h3>{recepient?.name}</h3>

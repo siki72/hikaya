@@ -24,6 +24,7 @@ export const ChatContextProvider = ({ children, user }) => {
       socket.emit("addNewUser", user?.id);
     }
     socket?.on("onlineUsers", (res) => {
+      console.log("disconnted", res);
       setOnlineUsers(res);
     });
   }, [socket, user]);

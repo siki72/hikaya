@@ -16,9 +16,9 @@ io.on("connection", (socket) => {
   });
   // send online users arrayto client
   io.emit("onlineUsers", onLineUsers);
-
   socket.on("disconnect", () => {
-    console.log("quelqu'un est partie", socket.id);
+    onLineUsers = onLineUsers.filter((user) => user.socketId !== socket.id);
+    io.emit("onlineUsers", onLineUsers);
   });
 });
 
