@@ -45,6 +45,7 @@
         transform: scale(1.1);
       }
       .contact_chatslogo {
+        position: relative;
         background-color: rgb(217, 219, 237);
         border-radius: 50%;
         width: 2rem;
@@ -52,6 +53,15 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        .online_user {
+          width: 0.7rem;
+          height: 0.7rem;
+          background-color: rgb(13, 221, 15);
+          border-radius: 50%;
+          position: absolute;
+          bottom: -0.1rem;
+          left: 1.2rem;
+        }
       }
       .contact_chats {
         margin: 0;

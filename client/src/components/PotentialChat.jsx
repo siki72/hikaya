@@ -5,7 +5,7 @@ import { AiOutlineClose } from "react-icons/ai";
 import { AuthContext } from "../context/userContext.jsx";
 import { BsFillTrash3Fill } from "react-icons/bs";
 const PotentialChat = ({ setActiveTab }) => {
-  const { potentialChats, setUserChats } = useContext(ChatContext);
+  const { potentialChats, setUserChats, onlineUsers } = useContext(ChatContext);
   const { user } = useContext(AuthContext);
   const createChat = async (id) => {
     console.log(id);
@@ -46,6 +46,9 @@ const PotentialChat = ({ setActiveTab }) => {
             >
               <div className="contact_chatslogo">
                 <RiUserFill className="user_icon" />
+                {onlineUsers?.some((user) => user.userId === pchat._id) && (
+                  <div className="online_user"></div>
+                )}
               </div>
               <div className="contact_chats">
                 <h3>{pchat?.name}</h3>

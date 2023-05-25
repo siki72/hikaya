@@ -1,5 +1,7 @@
 import { createContext, useCallback, useEffect, useState } from "react";
 export const ChatContext = createContext();
+import { io } from "socket.io-client";
+
 export const ChatContextProvider = ({ children, user }) => {
   const [userChats, setUserChats] = useState([]);
   const [potentialChats, setPotentialChats] = useState([]);
@@ -8,6 +10,23 @@ export const ChatContextProvider = ({ children, user }) => {
   const [messagesLoading, setMessagesLoading] = useState(false);
   const [messagesError, setMessagesError] = useState(null);
   const [recepient, setRecepient] = useState(null);
+  const [socket, SetSocket] = useState(null);
+  const [onlineUsers, setOnlineUsers] = useState([]);
+
+  useEffect(() => {
+    const newSocket = io("http://localhost:3333");
+    SetSocket(newSocket);
+  }, [user]);
+
+  useEffect(() => {
+    // let know server we arre online
+    if (socket && user) {
+      socket.emit("addNewUser", user?.id);
+    }
+    socket?.on("onlineUsers", (res) => {
+      setOnlineUsers(res);
+    });
+  }, [socket, user]);
 
   useEffect(() => {
     const getMessages = async () => {
@@ -102,6 +121,7 @@ export const ChatContextProvider = ({ children, user }) => {
         updateRecepient,
         recepient,
         updateMessages,
+        onlineUsers,
       }}
     >
       {children}

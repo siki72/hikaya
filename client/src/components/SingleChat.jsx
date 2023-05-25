@@ -14,7 +14,9 @@ const SingleChat = ({ singleCHat, user, chatId, setName }) => {
     updateRecepient,
     updateCurrentChat,
     currentChat,
+    onlineUsers,
   } = useContext(ChatContext);
+  const [isOnline, setIsOnline] = useState(null);
   useEffect(() => {
     /*     divRef.current.className = "contact "; */
     if (currentChat && singleCHat) {
@@ -29,6 +31,10 @@ const SingleChat = ({ singleCHat, user, chatId, setName }) => {
       }
     };
   }, [currentChat, singleCHat, divRef]);
+
+  useEffect(() => {
+    onlineUsers.some((u) => u.userId === recepient?._id) && setIsOnline(true);
+  }, [onlineUsers, recepient]);
   useEffect(() => {
     const fetchRecepientUser = async () => {
       try {
@@ -39,6 +45,7 @@ const SingleChat = ({ singleCHat, user, chatId, setName }) => {
           if (response.status === 200) {
             const data = await response.json();
             setRecepient(data);
+            console.log(data);
             updateRecepient(data);
           }
         }
@@ -72,6 +79,7 @@ const SingleChat = ({ singleCHat, user, chatId, setName }) => {
     setName(recepient.name);
   };
 
+  console.log(onlineUsers);
   return (
     <div
       ref={divRef}
@@ -81,7 +89,7 @@ const SingleChat = ({ singleCHat, user, chatId, setName }) => {
     >
       <div className="contact_logo" onClick={() => setName(recepient?.name)}>
         <RiUserFill className="user_icon" />
-        <div className="online_user"></div>
+        {isOnline && <div className="online_user"></div>}
       </div>
       <div className="contact_infos">
         <h3>{recepient?.name}</h3>
