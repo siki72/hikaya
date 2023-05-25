@@ -7,8 +7,8 @@ export const ChatContextProvider = ({ children, user }) => {
   const [potentialChats, setPotentialChats] = useState([]);
   const [currentChat, setCurrentChat] = useState(null);
   const [messages, setMessages] = useState([]);
-  const [messagesLoading, setMessagesLoading] = useState(false);
-  const [messagesError, setMessagesError] = useState(null);
+
+  const [newMessage, setNewMessage] = useState([]);
   const [recepient, setRecepient] = useState(null);
   const [socket, SetSocket] = useState(null);
   const [onlineUsers, setOnlineUsers] = useState([]);
@@ -16,23 +16,46 @@ export const ChatContextProvider = ({ children, user }) => {
   useEffect(() => {
     const newSocket = io("http://localhost:3333");
     SetSocket(newSocket);
+    return () => {
+      newSocket.disconnect();
+    };
   }, [user]);
 
+  // let know server we are online
   useEffect(() => {
-    // let know server we arre online
     if (socket && user) {
       socket.emit("addNewUser", user?.id);
     }
     socket?.on("onlineUsers", (res) => {
-      console.log("disconnted", res);
       setOnlineUsers(res);
     });
+    return () => {
+      socket?.off("onlineUsers");
+    };
   }, [socket, user]);
+
+  // send a messag
+  useEffect(() => {
+    if (socket && user) {
+      const recepientId = recepient?._id;
+      socket.emit("sendMessage", { ...newMessage, recepientId });
+    }
+  }, [newMessage]);
+
+  // receive message
+  useEffect(() => {
+    if (socket === null) return;
+    socket.on("getMessage", (resp) => {
+      if (currentChat?._id !== resp.chatId) return;
+      setMessages((prev) => [...prev, resp]);
+    });
+    return () => {
+      socket.off("getMessage");
+    };
+  }, [socket, currentChat, messages]);
 
   useEffect(() => {
     const getMessages = async () => {
-      setMessagesLoading(true);
-      setMessagesError(null);
       try {
         if (currentChat) {
           const response = await fetch(
@@ -41,9 +64,6 @@ export const ChatContextProvider = ({ children, user }) => {
           if (response.status === 200) {
             const data = await response.json();
             setMessages(data);
-          }
-          if (response.error) {
-            return setMessagesError(response);
           }
         }
       } catch (error) {
@@ -78,7 +98,7 @@ export const ChatContextProvider = ({ children, user }) => {
       }
     };
     getUsers();
-  }, [userChats]);
+  }, [userChats, user?.id]);
 
   const updateCurrentChat = useCallback((chat) => {
     setCurrentChat(chat);
@@ -89,6 +109,7 @@ export const ChatContextProvider = ({ children, user }) => {
   }, []);
   const updateMessages = useCallback((data) => {
     setMessages((prev) => [...prev, data]);
+    setNewMessage(data);
   }, []);
 
   useEffect(() => {

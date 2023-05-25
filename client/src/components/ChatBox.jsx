@@ -11,7 +11,6 @@ const ChatBox = ({ user, name }) => {
 
   useEffect(() => {
     if (chatContainerRef.current) {
-      console.log("called lilas");
       scrollToBottom();
     }
   }, [messages]);
@@ -62,22 +61,21 @@ const ChatBox = ({ user, name }) => {
             <span>{name}</span>
           </div>
           <div className="container_chats" ref={chatContainerRef}>
-            {messages &&
-              messages.map((message, index) => (
-                <div
-                  className={
-                    message.senderId === myId
-                      ? "messages-container"
-                      : "messages-container recevied"
-                  }
-                  key={index}
-                >
-                  <div className="message">{message.text}</div>
-                  <div className="moment">
-                    {moment(message.createdAt).calendar()}
-                  </div>
+            {messages.map((message, index) => (
+              <div
+                className={
+                  message.senderId === myId
+                    ? "messages-container"
+                    : "messages-container recevied"
+                }
+                key={index}
+              >
+                <div className="message">{message.text}</div>
+                <div className="moment">
+                  {moment(message.createdAt).calendar()}
                 </div>
-              ))}
+              </div>
+            ))}
 
             <div className="emoji"></div>
           </div>

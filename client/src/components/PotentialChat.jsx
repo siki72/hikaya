@@ -3,12 +3,11 @@ import { ChatContext } from "../context/chatContext.jsx";
 import { RiUserFill } from "react-icons/ri";
 import { AiOutlineClose } from "react-icons/ai";
 import { AuthContext } from "../context/userContext.jsx";
-import { BsFillTrash3Fill } from "react-icons/bs";
+
 const PotentialChat = ({ setActiveTab }) => {
   const { potentialChats, setUserChats, onlineUsers } = useContext(ChatContext);
   const { user } = useContext(AuthContext);
   const createChat = async (id) => {
-    console.log(id);
     try {
       if (user) {
         const response = await fetch(import.meta.env.VITE_URL_CHATS, {
@@ -22,7 +21,6 @@ const PotentialChat = ({ setActiveTab }) => {
         if (response.status === 201) {
           const data = await response.json();
           setUserChats((prevStat) => [...prevStat, data]);
-          console.log("chat created", data);
         }
       }
     } catch (error) {

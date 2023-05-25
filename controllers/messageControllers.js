@@ -14,7 +14,7 @@ export const createMessage = async (req, res, next) => {
         text,
       });
       const response = await message.save();
-      console.log(response);
+
       res.status(201).json(response);
     } else {
       return res.status(203).json("no text");

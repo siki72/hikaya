@@ -40,7 +40,6 @@ const SingleChat = ({ singleCHat, user, chatId, setName }) => {
           if (response.status === 200) {
             const data = await response.json();
             setRecepient(data);
-            console.log(data);
             updateRecepient(data);
           }
         }

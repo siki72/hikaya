@@ -26,7 +26,6 @@ const Login = () => {
         const response = await sendData.json();
         setUser(response);
         if (spanRef.current && typeof response === "string") {
-          console.log(typeof response);
           spanRef.current.innerText = response;
         }
       }
