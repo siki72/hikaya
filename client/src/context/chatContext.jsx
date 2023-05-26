@@ -69,7 +69,6 @@ export const ChatContextProvider = ({ children, user }) => {
   useEffect(() => {
     const getMessages = async () => {
       try {
-        console.log("from undefiend", currentChat);
         if (currentChat) {
           const response = await fetch(
             `${import.meta.env.VITE_URL_API_MESSAGES}${currentChat._id}`
@@ -151,7 +150,7 @@ export const ChatContextProvider = ({ children, user }) => {
     });
     setNotifications(mNotifs);
   }, []);
-  console.log("modif", notification);
+
   const updateNotifications = useCallback((notif) => {
     console.log("notif", notif);
     setNotifications(notif);

@@ -25,7 +25,6 @@ const Notification = () => {
       senderName: sender?.name,
     };
   });
-  console.log("lmodiifier ", modifiedNotif);
 
   const handleSelecChat = async (secondId, n) => {
     console.log("enter fcn");

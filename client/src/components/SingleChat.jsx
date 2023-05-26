@@ -15,8 +15,8 @@ const SingleChat = ({ singleCHat, user, chatId, setName }) => {
     currentChat,
     onlineUsers,
     notification,
-    updateNotifications,
   } = useContext(ChatContext);
+  const [countToDisplay, setCountToDisplay] = useState([]);
 
   useEffect(() => {
     if (currentChat && singleCHat) {
@@ -67,14 +67,21 @@ const SingleChat = ({ singleCHat, user, chatId, setName }) => {
     }
   };
 
-  useEffect(() => {}, [currentChat]);
+  useEffect(() => {
+    const a = notification.map((notif) => {
+      return singleCHat.members.find((m) => m === notif.senderId);
+    });
+    console.log("a", a);
+    setCountToDisplay(a);
+  }, [notification]);
 
   const handleUpdate = (param) => {
-    console.log("pas de soucis", param);
     updateCurrentChat(param);
     setName(recepient.name);
+    setCountToDisplay(null);
   };
-  console.log(notification);
+  console.log("notif", notification);
+  console.log("signle chat", singleCHat);
   return (
     <div
       ref={divRef}
@@ -97,8 +104,9 @@ const SingleChat = ({ singleCHat, user, chatId, setName }) => {
           <BsFillTrash3Fill onClick={() => handleRemoveChat()} />
         </span>
         <div className="date">{chatDate}</div>
-
-        <div className="notifications">2</div>
+        {countToDisplay?.some((c) => c === recepiedId) && (
+          <div className="notifications">{countToDisplay.length}</div>
+        )}
       </div>
     </div>
   );
