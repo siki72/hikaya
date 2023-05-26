@@ -180,8 +180,13 @@ body {
 .chat_page .chat .chats_container .header {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  justify-content: space-between;
   margin: 0 0 1rem 2rem;
+}
+.chat_page .chat .chats_container .header .user {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 .chat_page .chat .chats_container .header .contact_logo {
   background-color: rgb(205, 213, 213);
@@ -279,6 +284,51 @@ body {
 .navgation_bar ul li:hover {
   color: white;
   transform: scale(1.1);
+}
+.navgation_bar ul li .msg_notifications {
+  margin: 1rem 2rem;
+  justify-self: flex-end;
+}
+.navgation_bar ul li .msg_notifications .icon {
+  position: relative;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+.navgation_bar ul li .msg_notifications .icon .count {
+  position: absolute;
+  top: -0.3rem;
+  left: 1rem;
+  background-color: #1bc00f;
+  border-radius: 50%;
+  font-size: 1.3rem;
+  color: white;
+  width: 1.5rem;
+  height: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.navgation_bar ul li .msg_notifications .icon-notif {
+  color: rgb(255, 255, 255);
+}
+.navgation_bar ul li .msg_notifications .notification_content {
+  background-color: rgb(25, 135, 255);
+  position: absolute;
+  color: white;
+  font-size: 0.8rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: -moz-max-content;
+  width: max-content;
+  top: 1.5rem;
+  right: 1.5rem;
+  height: 2rem;
+  padding: 0 0.5rem;
+  border-radius: 0.4rem;
+}
+.navgation_bar ul li .msg_notifications .notification_content h3 {
+  margin-right: 1rem;
 }
 .navgation_bar ul .logout_btn {
   position: relative;

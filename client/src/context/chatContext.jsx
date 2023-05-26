@@ -7,11 +7,12 @@ export const ChatContextProvider = ({ children, user }) => {
   const [potentialChats, setPotentialChats] = useState([]);
   const [currentChat, setCurrentChat] = useState(null);
   const [messages, setMessages] = useState([]);
-
+  const [allUsers, setAllUsers] = useState([]);
   const [newMessage, setNewMessage] = useState([]);
   const [recepient, setRecepient] = useState(null);
   const [socket, SetSocket] = useState(null);
   const [onlineUsers, setOnlineUsers] = useState([]);
+  const [notification, setNotifications] = useState([]);
 
   useEffect(() => {
     const newSocket = io("http://localhost:3333");
@@ -42,15 +43,26 @@ export const ChatContextProvider = ({ children, user }) => {
     }
   }, [newMessage]);
 
-  // receive message
+  // receive message & NOTIF
   useEffect(() => {
     if (socket === null) return;
     socket.on("getMessage", (resp) => {
       if (currentChat?._id !== resp.chatId) return;
       setMessages((prev) => [...prev, resp]);
     });
+    socket.on("getNotifications", (resp) => {
+      const isChatOpen = currentChat?.members.some(
+        (id) => id === resp.senderId
+      );
+      if (isChatOpen) {
+        setNotifications((prev) => [...prev, { ...resp, isRead: true }]);
+      } else {
+        setNotifications((prev) => [...prev, resp]);
+      }
+    });
     return () => {
       socket.off("getMessage");
+      socket.off("getNotifications");
     };
   }, [socket, currentChat, messages]);
 
@@ -91,6 +103,7 @@ export const ChatContextProvider = ({ children, user }) => {
               return !ischatCreated;
             });
             setPotentialChats(pChats);
+            setAllUsers(data);
           }
         }
       } catch (error) {
@@ -144,6 +157,8 @@ export const ChatContextProvider = ({ children, user }) => {
         recepient,
         updateMessages,
         onlineUsers,
+        notification,
+        allUsers,
       }}
     >
       {children}

@@ -3,6 +3,7 @@ import { AiOutlineHome, AiFillSetting } from "react-icons/ai";
 import { BiMessageDots } from "react-icons/bi";
 import { RiUserFill, RiLogoutBoxRLine } from "react-icons/ri";
 import { AuthContext } from "../context/userContext.jsx";
+import Notification from "./Notification.jsx";
 const Nav = ({ setActiveTab, activeTab }) => {
   const { user, setUser } = useContext(AuthContext);
   const firstLetter = user?.name[0].toUpperCase();
@@ -33,6 +34,9 @@ const Nav = ({ setActiveTab, activeTab }) => {
         >
           <AiOutlineHome />
           <span>Home</span>
+        </li>
+        <li>
+          <Notification />
         </li>
         <li
           className={
