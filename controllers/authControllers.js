@@ -96,7 +96,7 @@ export const loginUser = async (req, res, next) => {
           });
       }
     );
-    res.status(201);
+    res.status(200);
   } catch (error) {
     next(error);
   }

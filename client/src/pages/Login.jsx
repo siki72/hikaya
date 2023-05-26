@@ -24,7 +24,9 @@ const Login = () => {
           body: JSON.stringify(newUser),
         });
         const response = await sendData.json();
-        setUser(response);
+        if (sendData.status === 200) {
+          setUser(response);
+        }
         if (spanRef.current && typeof response === "string") {
           spanRef.current.innerText = response;
         }

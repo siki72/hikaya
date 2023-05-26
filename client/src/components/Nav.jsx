@@ -6,6 +6,7 @@ import { AuthContext } from "../context/userContext.jsx";
 import Notification from "./Notification.jsx";
 const Nav = ({ setActiveTab, activeTab }) => {
   const { user, setUser } = useContext(AuthContext);
+
   const firstLetter = user?.name[0].toUpperCase();
 
   const handleActiveTab = (tabName) => {

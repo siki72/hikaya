@@ -12,7 +12,7 @@ const Notification = () => {
     allUsers,
     updateCurrentChat,
     markAllNotifAsRead,
-    currentChat,
+
     updateNotifications,
   } = useContext(ChatContext);
   const unRead = unreadNotifications(notification);
@@ -25,6 +25,7 @@ const Notification = () => {
       senderName: sender?.name,
     };
   });
+  console.log("lmodiifier ", modifiedNotif);
 
   const handleSelecChat = async (secondId, n) => {
     console.log("enter fcn");
