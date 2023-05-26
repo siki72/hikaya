@@ -15,6 +15,7 @@ const SingleChat = ({ singleCHat, user, chatId, setName }) => {
     currentChat,
     onlineUsers,
     notification,
+    updateNotifications,
   } = useContext(ChatContext);
 
   useEffect(() => {
@@ -66,10 +67,14 @@ const SingleChat = ({ singleCHat, user, chatId, setName }) => {
     }
   };
 
+  useEffect(() => {}, [currentChat]);
+
   const handleUpdate = (param) => {
+    console.log("pas de soucis", param);
     updateCurrentChat(param);
     setName(recepient.name);
   };
+  console.log(notification);
   return (
     <div
       ref={divRef}
@@ -92,7 +97,7 @@ const SingleChat = ({ singleCHat, user, chatId, setName }) => {
           <BsFillTrash3Fill onClick={() => handleRemoveChat()} />
         </span>
         <div className="date">{chatDate}</div>
-        {notification.map((n) => n.isRead === false)}
+
         <div className="notifications">2</div>
       </div>
     </div>

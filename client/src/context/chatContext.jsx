@@ -69,6 +69,7 @@ export const ChatContextProvider = ({ children, user }) => {
   useEffect(() => {
     const getMessages = async () => {
       try {
+        console.log("from undefiend", currentChat);
         if (currentChat) {
           const response = await fetch(
             `${import.meta.env.VITE_URL_API_MESSAGES}${currentChat._id}`
@@ -144,6 +145,18 @@ export const ChatContextProvider = ({ children, user }) => {
     getUsersChats();
   }, [user]);
 
+  const markAllNotifAsRead = useCallback((notifications) => {
+    const mNotifs = notifications.map((n) => {
+      return { ...n, isRead: true };
+    });
+    setNotifications(mNotifs);
+  }, []);
+  console.log("modif", notification);
+  const updateNotifications = useCallback((notif) => {
+    console.log("notif", notif);
+    setNotifications(notif);
+  }, []);
+
   return (
     <ChatContext.Provider
       value={{
@@ -159,6 +172,8 @@ export const ChatContextProvider = ({ children, user }) => {
         onlineUsers,
         notification,
         allUsers,
+        markAllNotifAsRead,
+        updateNotifications,
       }}
     >
       {children}

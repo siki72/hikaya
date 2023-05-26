@@ -1,3 +1,4 @@
 export const unreadNotifications = (notifications) => {
-  return notifications.filter((n) => n.isRead === false);
+  console.log(notifications);
+  return notifications?.filter((n) => n.isRead === false);
 };

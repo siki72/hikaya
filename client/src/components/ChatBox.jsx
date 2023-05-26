@@ -3,7 +3,7 @@ import { ChatContext } from "../context/chatContext.jsx";
 import { RiUserFill } from "react-icons/ri";
 import moment from "moment";
 import InputEmoji from "react-input-emoji";
-import Notification from "./Notification.jsx";
+
 const ChatBox = ({ user, name }) => {
   const chatContainerRef = useRef(null);
   const { currentChat, messages, updateMessages } = useContext(ChatContext);
@@ -62,7 +62,6 @@ const ChatBox = ({ user, name }) => {
               </div>
               <span>{name}</span>
             </div>
-            <Notification />
           </div>
           <div className="container_chats" ref={chatContainerRef}>
             {messages.map((message, index) => (
