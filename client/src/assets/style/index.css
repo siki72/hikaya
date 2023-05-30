@@ -201,7 +201,7 @@ body {
   text-transform: uppercase;
 }
 .chat_page .chat .chats_container .container_chats {
-  overflow: auto;
+  overflow-y: auto;
   position: relative;
   background-color: white;
   height: 90%;
@@ -251,16 +251,31 @@ body {
 .chat_page .chat .chats_container .welcom .welcom_message h1 {
   font-family: "Nanum Myeongjo", sans-serif;
 }
-.chat_page .chat .send_message {
-  margin: 1rem 0;
-  display: flex;
-  width: 100%;
+.chat_page .chat .chats_container .welcom .welcom_message h1 .welcom_icon {
+  color: rgb(57, 121, 199);
 }
-.chat_page .chat .send_message input {
+.chat_page .chat .send_message {
+  margin: 1rem auto;
+  width: 90%;
+}
+.chat_page .chat .send_message input[type=text] {
+  width: 80%;
+  border: 1px solid transparent;
+  margin: 0 auto;
+  padding: 1rem;
+  border-radius: 1rem;
+  font-size: 1rem;
+  font-weight: 300;
+}
+.chat_page .chat .send_message input[type=text]:focus {
+  border: 1px solid black;
+}
+.chat_page .chat .send_message input[type=submit] {
   background-color: rgb(25, 135, 255);
   color: white;
-  padding: 0.1rem 1rem;
+  padding: 1rem 1rem;
   border-radius: 0.5rem;
+  margin-left: 2rem;
 }
 
 .navgation_bar {
@@ -327,6 +342,10 @@ body {
   height: -moz-max-content;
   height: max-content;
   border-radius: 0.4rem;
+}
+.navgation_bar ul li .msg_notifications .notification_content span {
+  font-size: 1.2rem;
+  padding-bottom: 0.2rem;
 }
 .navgation_bar ul li .msg_notifications .notification_content h3 {
   padding: 0.3rem 0.3rem;
@@ -462,6 +481,7 @@ body {
 .contact .contact_infos {
   margin-top: 1rem;
   align-self: flex-start;
+  width: 9rem;
 }
 .contact .contact_infos h3 {
   font-family: "Athiti", sans-serif;
@@ -469,9 +489,13 @@ body {
   color: rgb(37, 30, 30);
   font-size: 0.9rem;
 }
-.contact .contact_infos p {
+.contact .contact_infos .text {
   font-size: 0.8rem;
-  color: rgb(129, 131, 139);
+  color: rgb(105, 133, 253);
+  visibility: hidden;
+}
+.contact .contact_infos .show-text {
+  visibility: visible;
 }
 .contact .datas {
   padding: 0.5rem;

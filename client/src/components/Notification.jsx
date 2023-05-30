@@ -25,10 +25,8 @@ const Notification = () => {
       senderName: sender?.name,
     };
   });
-  console.log("lmodiifier ", modifiedNotif);
 
   const handleSelecChat = async (secondId, n) => {
-    console.log("enter fcn");
     try {
       const response = await fetch(
         `${import.meta.env.VITE_URL_GET_CHAT}${user.id}/${secondId}`
@@ -43,7 +41,7 @@ const Notification = () => {
             return el;
           }
         });
-        console.log("a", a);
+
         updateNotifications(a);
       }
     } catch (error) {

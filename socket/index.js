@@ -31,6 +31,44 @@ io.on("connection", (socket) => {
       });
     }
   });
+
+  socket.on("allMessagesReaded", (data) => {
+    const user = onLineUsers.find((user) => user.userId === data.recepientId);
+    if (user) {
+      io.to(user.socketId).emit("messagesReaded", {
+        sendId: data.senderId,
+        chatId: data.chatId,
+      });
+    }
+  });
+  socket.on("chatOpen", (data) => {
+    const user = onLineUsers.find((user) => user.userId === data.recepientId);
+    if (user) {
+      io.to(user.socketId).emit("getChatOpen", {
+        chatId: data.chatId,
+        senderId: data.senderId,
+      });
+    }
+  });
+
+  socket.on("isTyping", (data) => {
+    const user = onLineUsers.find((user) => user.userId === data.recepientId);
+
+    if (user) {
+      io.to(user.socketId).emit("senderTyping", {
+        typingSenderId: data.senderId,
+      });
+    }
+  });
+  socket.on("finishTyping", (data) => {
+    const user = onLineUsers.find((user) => user.userId === data.recepientId);
+
+    if (user) {
+      io.to(user.socketId).emit("senderFinishTyping", {
+        typingSenderId: data.senderId,
+      });
+    }
+  });
   socket.on("disconnect", () => {
     onLineUsers = onLineUsers.filter((user) => user.socketId !== socket.id);
     io.emit("onlineUsers", onLineUsers);

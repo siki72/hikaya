@@ -14,8 +14,8 @@ const SingleChat = ({ singleCHat, user, chatId, setName }) => {
     updateCurrentChat,
     currentChat,
     onlineUsers,
+    isTyping,
     notification,
-    updateNotifications,
   } = useContext(ChatContext);
   const [countToD, setCountToD] = useState([]);
 
@@ -56,6 +56,7 @@ const SingleChat = ({ singleCHat, user, chatId, setName }) => {
   const handleRemoveChat = async () => {
     const response = await fetch(import.meta.env.VITE_URL_REMOVE_CHAT, {
       method: "POST",
+
       credentials: "include",
       body: JSON.stringify({ id: user.id, chatId }),
       headers: {
@@ -73,7 +74,7 @@ const SingleChat = ({ singleCHat, user, chatId, setName }) => {
       if (notif.isRead) return;
       return singleCHat.members.find((m) => m === notif.senderId);
     });
-    console.log("a", a);
+
     setCountToD(a);
   }, [notification]);
 
@@ -82,8 +83,7 @@ const SingleChat = ({ singleCHat, user, chatId, setName }) => {
     setName(recepient.name);
     setCountToD(null);
   };
-  console.log("notif", notification);
-  console.log("signle chat", singleCHat);
+
   return (
     <div
       ref={divRef}
@@ -99,7 +99,12 @@ const SingleChat = ({ singleCHat, user, chatId, setName }) => {
       </div>
       <div className="contact_infos">
         <h3>{recepient?.name}</h3>
-        <p>un aperçu du message</p>
+        {/*  {recepient?._id === isTyping && <p>est entrain d ecrire</p>} */}
+        <div>
+          <p className={recepient?._id === isTyping ? "show-text" : "text"}>
+            {recepient?.name.toUpperCase()} is typing ...
+          </p>
+        </div>
       </div>
       <div className="datas">
         <span id="trash">

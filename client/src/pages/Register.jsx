@@ -32,7 +32,6 @@ const Register = () => {
         if (spanRef.current && typeof response === "string") {
           spanRef.current.innerText = response;
         }
-        console.log(response);
       }
     } catch (error) {
       console.log(error);

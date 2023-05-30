@@ -5,6 +5,7 @@ const messageSchema = new mongoose.Schema(
     chatId: String,
     senderId: String,
     text: String,
+    lu: { type: Boolean, default: false },
   },
   {
     timestamps: true,

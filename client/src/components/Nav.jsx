@@ -48,7 +48,7 @@ const Nav = ({ setActiveTab, activeTab }) => {
           <BiMessageDots />
           <span>Chats</span>
         </li>
-        <li
+        {/* <li
           className={
             activeTab === "settings" ? "activeClass logout_btn" : "logout_btn"
           }
@@ -56,7 +56,7 @@ const Nav = ({ setActiveTab, activeTab }) => {
         >
           <AiFillSetting />
           <span>Settings</span>
-        </li>
+        </li> */}
         <li className="logout_btn" onClick={handleLogOut}>
           <RiLogoutBoxRLine />
           <span>Logout</span>

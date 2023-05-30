@@ -46,15 +46,20 @@
   .contact_infos {
     margin-top: 1rem;
     align-self: flex-start;
+    width: 9rem;
     h3 {
       font-family: $Athiti;
       text-transform: uppercase;
       color: rgb(37, 30, 30);
       font-size: 0.9rem;
     }
-    p {
+    .text {
       font-size: 0.8rem;
-      color: rgb(129, 131, 139);
+      color: rgb(105, 133, 253);
+      visibility: hidden;
+    }
+    .show-text {
+      visibility: visible;
     }
   }
   .datas {

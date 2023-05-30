@@ -47,6 +47,10 @@
           color: rgb(255, 255, 255);
         }
         .notification_content {
+          span {
+            font-size: 1.2rem;
+            padding-bottom: 0.2rem;
+          }
           background-color: rgb(26, 30, 56);
           z-index: 1;
           color: white;

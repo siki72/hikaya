@@ -36,3 +36,18 @@ export const getMessages = async (req, res, next) => {
     next(error);
   }
 };
+
+// ------------------------------------------
+//  Update Messages
+// ------------------------------------------
+
+export const markReadMessages = async (req, res, next) => {
+  const { chatId } = req.body;
+  try {
+    await messageModel.updateMany({ chatId: chatId }, { lu: true });
+    const updatedMessages = await messageModel.find({ chatId });
+    res.status(200).json(updatedMessages);
+  } catch (error) {
+    next(error);
+  }
+};

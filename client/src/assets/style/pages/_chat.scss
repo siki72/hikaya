@@ -58,7 +58,7 @@
         }
       }
       .container_chats {
-        overflow: auto;
+        overflow-y: auto;
         position: relative;
         background-color: white;
         height: 90%;
@@ -105,20 +105,35 @@
           text-align: center;
           h1 {
             font-family: $nanum;
+            .welcom_icon {
+              color: rgb(57, 121, 199);
+            }
           }
         }
       }
     }
     .send_message {
-      margin: 1rem 0;
-      display: flex;
-      width: 100%;
+      margin: 1rem auto;
+      width: 90%;
+      input[type="text"] {
+        width: 80%;
+        border: 1px solid transparent;
+        margin: 0 auto;
+        padding: 1rem;
+        border-radius: 1rem;
+        font-size: 1rem;
+        font-weight: 300;
+        &:focus {
+          border: 1px solid black;
+        }
+      }
 
-      input {
+      input[type="submit"] {
         background-color: rgb(25, 135, 255);
         color: white;
-        padding: 0.1rem 1rem;
+        padding: 1rem 1rem;
         border-radius: 0.5rem;
+        margin-left: 2rem;
       }
     }
   }

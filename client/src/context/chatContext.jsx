@@ -13,6 +13,8 @@ export const ChatContextProvider = ({ children, user }) => {
   const [socket, SetSocket] = useState(null);
   const [onlineUsers, setOnlineUsers] = useState([]);
   const [notification, setNotifications] = useState([]);
+  const [readed, setReaded] = useState(null);
+  const [isTyping, setIsTyping] = useState({});
 
   useEffect(() => {
     const newSocket = io("http://localhost:3333");
@@ -21,6 +23,48 @@ export const ChatContextProvider = ({ children, user }) => {
       newSocket.disconnect();
     };
   }, [user]);
+
+  //let know user checked message
+  useEffect(() => {
+    if (socket && currentChat) {
+      //modify state lu in db
+      const modifiedMessage = async () => {
+        try {
+          const chatId = currentChat._id;
+          const response = await fetch(
+            import.meta.env.VITE_URL_UPDATE_MESSAGES,
+            {
+              method: "post",
+              credentials: "include",
+              headers: {
+                "Content-type": "application/json",
+              },
+              body: JSON.stringify({ chatId }),
+            }
+          );
+          if (response.status === 200) {
+            const data = await response.json();
+            setMessages(data);
+            const recepientId = currentChat.members.find(
+              (id) => id !== user.id
+            );
+            socket.emit("allMessagesReaded", {
+              chatId: currentChat._id,
+              recepientId,
+              senderId: user.id,
+            });
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      };
+      modifiedMessage();
+
+      return () => {
+        socket.off("allMessagesReaded");
+      };
+    }
+  }, [socket, currentChat]);
 
   // let know server we are online
   useEffect(() => {
@@ -48,7 +92,14 @@ export const ChatContextProvider = ({ children, user }) => {
     if (socket === null) return;
     socket.on("getMessage", (resp) => {
       if (currentChat?._id !== resp.chatId) return;
-      setMessages((prev) => [...prev, resp]);
+      if (currentChat?._id === resp.chatId) {
+        setMessages((prev) => [...prev, { ...resp, lu: true }]);
+        socket.emit("chatOpen", {
+          chatId: currentChat?._id,
+          sendId: user?.id,
+          recepientId: resp.senderId,
+        });
+      }
     });
     socket.on("getNotifications", (resp) => {
       const isChatOpen = currentChat?.members.some(
@@ -65,6 +116,57 @@ export const ChatContextProvider = ({ children, user }) => {
       socket.off("getNotifications");
     };
   }, [socket, currentChat, messages]);
+
+  // getChatOpen
+  useEffect(() => {
+    if (!socket) return;
+
+    socket.on("getChatOpen", (resp) => {
+      messages?.map((m) => {
+        setMessages((prev) => [...prev, { ...m, lu: true }]);
+      });
+    });
+    socket.off("getChatOpen");
+  }, [socket]);
+
+  //confirmation redaed messages
+
+  useEffect(() => {
+    if (socket === null) return;
+
+    socket.on("messagesReaded", (senderId) => {
+      if (currentChat?._id === senderId.chatId) {
+        messages.map((m) => {
+          setMessages((prev) => [...prev, { ...m, lu: true }]);
+        });
+      }
+    });
+
+    return () => {
+      socket.off("messagesReaded");
+    };
+  }, [socket, messages, currentChat]);
+
+  useEffect(() => {
+    if (socket === null) return;
+    socket.on("senderTyping", (data) => {
+      setIsTyping(data.typingSenderId);
+    });
+    return () => {
+      socket.off("senderTyping");
+    };
+  }, [socket, currentChat]);
+  useEffect(() => {
+    if (socket === null) return;
+    socket.on("senderFinishTyping", (data) => {
+      setTimeout(() => {
+        setIsTyping(null);
+      }, 3000);
+    });
+    return () => {
+      socket.off("senderFinishTyping");
+    };
+  }, [socket, currentChat, isTyping]);
 
   useEffect(() => {
     const getMessages = async () => {
@@ -152,7 +254,6 @@ export const ChatContextProvider = ({ children, user }) => {
   }, []);
 
   const updateNotifications = useCallback((notif) => {
-    console.log("notif", notif);
     setNotifications(notif);
   }, []);
 
@@ -173,6 +274,11 @@ export const ChatContextProvider = ({ children, user }) => {
         allUsers,
         markAllNotifAsRead,
         updateNotifications,
+        readed,
+        socket,
+        isTyping,
+        setMessages,
+        newMessage,
       }}
     >
       {children}
