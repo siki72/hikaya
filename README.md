@@ -2,8 +2,7 @@
 # Hikaya private Chat App
 
 
-un petit projet qui as permis de realiser une application de message privée en temps réel  pour appliquer les concepts téorique des webscokets..
-
+a small project that enabled us to create a real-time private message application to apply the theoretical concepts of webscokets.
 
 ## Deployment
 
