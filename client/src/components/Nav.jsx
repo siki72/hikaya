@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { AiOutlineHome, AiFillSetting } from "react-icons/ai";
 import { BiMessageDots } from "react-icons/bi";
 import { RiUserFill, RiLogoutBoxRLine } from "react-icons/ri";

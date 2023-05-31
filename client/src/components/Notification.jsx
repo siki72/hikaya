@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { RiMessage2Fill } from "react-icons/ri";
 import { ChatContext } from "../context/chatContext.jsx";
 import { AuthContext } from "../context/userContext";

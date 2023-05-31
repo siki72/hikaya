@@ -12,16 +12,12 @@ const ChatBox = ({ user, name }) => {
     messages,
     updateMessages,
     socket,
-    isTyping,
     allUsers,
     newMessage,
-    setMessages,
   } = useContext(ChatContext);
   const [textMessage, setTextMessage] = useState("");
   const myId = user.id;
   const recepientId = currentChat?.members.find((id) => id !== user.id);
-
-  const sender = allUsers;
 
   useEffect(() => {
     if (chatContainerRef.current) {
@@ -125,7 +121,7 @@ const ChatBox = ({ user, name }) => {
                       <MdDoneAll />
                     </div>
                   ) : (
-                    <div className="just_sender">envoyé</div>
+                    <div className="just_sender">sent</div>
                   )}
                 </div>
               ))}
