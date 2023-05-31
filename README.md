@@ -82,20 +82,32 @@ Javascript, HTML, CSS, NodeJS, Mongodb, REACT ...
 ## Screenshots
 
 - Home page
+
+
 ![Home page Screenshot](https://i.postimg.cc/zf4KTQLK/Capture-d-e-cran-2023-05-31-a-11-48-36.jpg)
 
 
 - Chat App
+
+
 ![Chat App Screenshot](https://i.postimg.cc/FKYn925L/Capture-d-e-cran-2023-05-31-a-11-49-03.jpg)
 
 - Select a chat
+
+
 ![select à chat](https://i.postimg.cc/3RCj7BRG/Capture-d-e-cran-2023-05-31-a-11-49-40.jpg)
 
 - Send à message 
+
+
 ![Send à message](https://i.postimg.cc/DZ2JQKvW/Capture-d-e-cran-2023-05-31-a-11-51-15.jpg)
 
-- real-time message reception with notification
+- Real-time message reception with notifications
+
+
 ![ message](https://i.postimg.cc/D01wRjwV/Capture-d-e-cran-2023-05-31-a-11-52-00.jpg)
 
 - Notify `Real-time is typing` 
+
+
 ![ message](https://i.postimg.cc/bNMmmm2Y/Capture-d-e-cran-2023-05-31-a-11-52-46.jpg)
